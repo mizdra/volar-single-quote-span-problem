@@ -11,7 +11,7 @@ if (!sourceFile) throw new Error("Source file not found: " + targetFile);
 
 const position = getPosition(sourceFile, 2, 8); // Position of 'a_1' in styles.a_1
 
-console.log(`=== getDefinitionAtPosition for a_1 ===`);
+console.log(`\n=== getDefinitionAtPosition for a_1 ===`);
 const definitions = languageService.getDefinitionAtPosition(
   targetFile,
   position,
