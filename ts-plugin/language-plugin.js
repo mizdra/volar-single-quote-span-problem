@@ -54,7 +54,7 @@ export function createCssModuleLanguagePlugin() {
 }
 
 /**
- * @typedef {{ generatedOffsets: number[], lengths: number[], sourceOffsets: number[] }} Mapping
+ * @typedef {{ generatedOffsets: number[], lengths: number[], sourceOffsets: number[], generatedLengths: number[] }} Mapping
  */
 
 /**
@@ -64,7 +64,7 @@ export function createCssModuleLanguagePlugin() {
  */
 function createDts(cssModuleText) {
   /** @type {Mapping} */
-  const mapping = { generatedOffsets: [], lengths: [], sourceOffsets: [] };
+  const mapping = { generatedOffsets: [], lengths: [], sourceOffsets: [], generatedLengths: [] };
 
   const result = cssModuleText.match(/\.([a-zA-Z0-9_-]+)/g);
   if (!result) return { text: 'declare const styles: {};\nexport default styles;', mapping };
@@ -72,7 +72,7 @@ function createDts(cssModuleText) {
   const classNames = result.map(i => i.slice(1));
   const dtsText = `
 declare const styles: {
-${classNames.map(className => `  ${className}: string,`).join('\n')}
+${classNames.map(className => `  '${className}': string,`).join('\n')}
 };
 export default styles;
   `.trim();
@@ -80,7 +80,8 @@ export default styles;
   for (const className of classNames) {
     mapping.sourceOffsets.push(cssModuleText.indexOf(className));
     mapping.lengths.push(className.length);
-    mapping.generatedOffsets.push(dtsText.indexOf(className));
+    mapping.generatedOffsets.push(dtsText.indexOf(`'${className}'`));
+    mapping.generatedLengths.push(className.length + 2);
   }
 
   return { text: dtsText, mapping };
