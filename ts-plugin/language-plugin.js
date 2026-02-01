@@ -19,7 +19,7 @@ export function createCssModuleLanguagePlugin() {
       const length = snapshot.getLength();
       const cssModuleText = snapshot.getText(0, length);
       const { text, mapping } = createDts(cssModuleText);
-      console.log('\n=== Virtual Code for ' + relative(process.cwd(), scriptId) + ' ===');
+      console.log('=== Virtual Code for ' + relative(process.cwd(), scriptId) + ' ===');
       console.log(text);
       console.log('\n=== Mapping for ' + relative(process.cwd(), scriptId) + ' ===');
       console.log(mapping);
