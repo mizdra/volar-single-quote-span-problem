@@ -386,3 +386,7 @@ In summary, `mappedStart` becomes `2` and `mappedEnd` becomes `4`, so the `lengt
 ## What should we do?
 
 Most likely, the `translateOffset` function in Volar.js needs to be fixed to correctly handle cases where multiple ranges overlap at a position.
+
+## Acknowledgments
+
+The scripts such as `typescript.ts`, `volar.ts`, and `util.ts` were generated using Claude Code. All investigation and analysis of the issues were conducted by myself.
