@@ -57,8 +57,6 @@ index 9133514..297aeb6 100644
 <details>
 <summary><code>node typescript.ts</code></summary>
 
-```css
-
 ```bash
 $ node typescript.ts
 
@@ -107,8 +105,6 @@ $ node typescript.ts
 
 <details>
 <summary><code>node volar.ts</code></summary>
-
-```css
 
 ```bash
 $ node volar.ts
@@ -175,8 +171,6 @@ git reset --hard HEAD
 <details>
 <summary><code>node typescript.ts</code></summary>
 
-```css
-
 ```bash
 $ node typescript.ts
 
@@ -225,8 +219,6 @@ $ node typescript.ts
 
 <details>
 <summary><code>node volar.ts</code></summary>
-
-```css
 
 ```bash
 $ node volar.ts
