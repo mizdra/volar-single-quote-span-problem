@@ -10,7 +10,7 @@ if (!sourceFile) throw new Error("Source file not found: " + targetFile);
 
 const position = getPosition(sourceFile, 2, 8); // Position of 'a_1' in styles.a_1
 
-console.log(`\n=== Definitions for a_1 ===`);
+console.log(`=== Definitions for a_1 ===`);
 const definitions = languageService.getDefinitionAtPosition(
   targetFile,
   position,
@@ -24,7 +24,7 @@ console.dir(references?.map(reference => ({
   references: reference.references.map(ref => extractLocation(ref)),
 })), { depth: null });
 
-console.log(`=== RenameLocations for a_1 ===`);
+console.log(`\n=== RenameLocations for a_1 ===`);
 const renameLocations = languageService.findRenameLocations(
   targetFile,
   position,
