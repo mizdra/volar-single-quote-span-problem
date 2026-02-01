@@ -72,7 +72,7 @@ function createDts(cssModuleText) {
   const classNames = result.map(i => i.slice(1));
   const dtsText = `
 declare const styles: {
-${classNames.map(className => `  ${className}: string,`).join('\n')}
+${classNames.map(className => `  '${className}': string,`).join('\n')}
 };
 export default styles;
   `.trim();
