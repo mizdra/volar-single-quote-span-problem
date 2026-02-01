@@ -78,7 +78,7 @@ export default styles;
   `.trim();
 
   for (const className of classNames) {
-    mapping.sourceOffsets.push(cssModuleText.indexOf('.' + className) + 1);
+    mapping.sourceOffsets.push(cssModuleText.indexOf(className));
     mapping.generatedOffsets.push(dtsText.indexOf(className));
     mapping.lengths.push(className.length);
   }
