@@ -54,7 +54,7 @@ export function createCssModuleLanguagePlugin() {
 }
 
 /**
- * @typedef {Pick<import('@volar/language-core').CodeMapping, 'generatedOffsets' | 'sourceOffsets' | 'lengths'>} Mapping
+ * @typedef {{ generatedOffsets: number[], sourceOffsets: number[], lengths: number[] }} Mapping
  */
 
 /**
