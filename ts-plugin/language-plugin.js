@@ -54,7 +54,7 @@ export function createCssModuleLanguagePlugin() {
 }
 
 /**
- * @typedef {{ generatedOffsets: number[], sourceOffsets: number[], lengths: number[] }} Mapping
+ * @typedef {{ generatedOffsets: number[], lengths: number[], sourceOffsets: number[] }} Mapping
  */
 
 /**
@@ -64,7 +64,7 @@ export function createCssModuleLanguagePlugin() {
  */
 function createDts(cssModuleText) {
   /** @type {Mapping} */
-  const mapping = { generatedOffsets: [], sourceOffsets: [], lengths: [] };
+  const mapping = { generatedOffsets: [], lengths: [], sourceOffsets: [] };
 
   const result = cssModuleText.match(/\.([a-zA-Z0-9_-]+)/g);
   if (!result) return { text: 'declare const styles: {};\nexport default styles;', mapping };
@@ -79,8 +79,8 @@ export default styles;
 
   for (const className of classNames) {
     mapping.sourceOffsets.push(cssModuleText.indexOf(className));
-    mapping.generatedOffsets.push(dtsText.indexOf(className));
     mapping.lengths.push(className.length);
+    mapping.generatedOffsets.push(dtsText.indexOf(className));
   }
 
   return { text: dtsText, mapping };
