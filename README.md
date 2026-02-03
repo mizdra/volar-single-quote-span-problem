@@ -2,6 +2,8 @@
 
 This repository explains the peculiar behavior exhibited by the TypeScript language service loaded via @volar/typescript when object property names are enclosed in single quotes within generated `.d.ts` files.
 
+It also introduces problems caused by this peculiar behavior and methods to avoid them.
+
 ## Environment
 
 - macOS 26.2
@@ -275,9 +277,35 @@ export default styles;
 
 `getDefinitionAtPosition` is correct, but `findReferences` and `findRenameLocations` are incorrect.
 
-## What if we generate mappings for both `a_1` and `'a_1'`?
+## Why `findReferences` and `findRenameLocations` do not work correctly in `case-3`
 
-What happens if we generate mappings for both `a_1` and `'a_1'`? You can try this on the `case-4` branch.
+The reason is Volar.js's mapping lookup logic. Volar.js searches mappings using the following `findMatchingOffsets` function.
+
+- https://github.com/volarjs/volar.js/blob/882cd56d46a13d272f34e451f495d3d62251969a/packages/source-map/lib/sourceMap.ts#L51C3-L51C22
+
+The `translateOffset` function converts the offset on `.d.ts` (`27`) to the offset on `.module.css` (`1`).
+
+- https://github.com/volarjs/volar.js/blob/882cd56d46a13d272f34e451f495d3d62251969a/packages/source-map/lib/sourceMap.ts#L77-L87
+
+When `findReferences` calculates the start position of `a_1` (internally called [`mappedStart`](https://github.com/volarjs/volar.js/blob/882cd56d46a13d272f34e451f495d3d62251969a/packages/source-map/lib/sourceMap.ts#L103)), `translateOffset` is invoked with the following arguments.
+
+```ts
+const mappedStart = translateOffset(
+  27, // start
+  [26], // fromOffsets
+  [1], // toOffsets
+  [5], // fromLengths
+  [3], // toLengths
+);
+```
+
+This function returns `2`. Because `start` is 1 greater than `fromOffsets`, it also returns `2`, which is 1 greater than `toOffsets`. This is by design in `translateOffset`.
+
+To solve this, you need to generate a mapping for `'a_1'` as well for `findReferences` and `findRenameLocations`. In other words, you need mappings for both `a_1` and `'a_1'`.
+
+## Now let's generate mappings for both `a_1` and `'a_1'`
+
+You can try this on the `case-4` branch.
 
 - https://github.com/mizdra/typescript-volar-span-comparison/compare/main...case-4
 
@@ -340,52 +368,97 @@ export default styles;
 ]
 ```
 
-The result is the same as the `case-3` branch. `findReferences` and `findRenameLocations` are still incorrect.
+The result is the same as the `case-3` branch. `findReferences` and `findRenameLocations` are still incorrect. This is because Volar.js does not support overlapping mapping ranges.
 
-## Why `findReferences` and `findRenameLocations` do not work correctly in `case-4`
+- https://github.com/volarjs/volar.js/issues/203
 
-Even though a correct mapping exists in `case-4`, `findReferences` and `findRenameLocations` do not work correctly. The reason lies in Volar.js's mapping lookup logic. Volar.js searches mappings with the following `findMatchingOffsets` function.
+## So, what should we do?
 
-- https://github.com/volarjs/volar.js/blob/882cd56d46a13d272f34e451f495d3d62251969a/packages/source-map/lib/sourceMap.ts#L51C3-L51C22
+As far as I know, there are two ways to solve this problem.
 
-The `translateOffset` function converts the offset in `.d.ts` (`27`) to the offset in `.module.css` (`1`).
+1. Ask Volar.js to support overlapping mapping ranges.
+    - Volar.js seems cautious about supporting overlapping mapping ranges.
+        - https://github.com/volarjs/volar.js/issues/203#issuecomment-2176919103
+    - Therefore, this solution may not be practical.
+2. Use zero-length mappings.
+    - This is the solution introduced below.
+    - https://github.com/volarjs/volar.js/issues/203#issuecomment-2173885028
+3. Use `Language.mapperFactory`.
+    - Using Volar.js's `Language.mapperFactory`, you can customize the mapping lookup logic.
+        - https://github.com/volarjs/volar.js/pull/207
+    - This is the approach used by ws-typescript-angular-plugin.
+        - https://github.com/JetBrains/intellij-plugins/commit/e9e7865c51e9d8b2feb342b54cb54d3a459bfa9b#diff-2de2da0170b8536fcf411a2ea7edcaa1c88e61d9a6a7d14bd2b1ce09ea181e65
+4. Generate separate mapping objects for `a_1` and `'a_1'`, and give higher priority to the `a_1` mapping object.
+    - Volar.js supports multiple mapping objects.
+        - https://github.com/volarjs/volar.js/blob/882cd56d46a13d272f34e451f495d3d62251969a/packages/language-core/lib/types.ts#L74
+    - `translateOffset` first searches in the `a_1` mapping object. If it cannot find a valid range for the `start` argument, it falls back to the `'a_1'` mapping object.
 
-- https://github.com/volarjs/volar.js/blob/882cd56d46a13d272f34e451f495d3d62251969a/packages/source-map/lib/sourceMap.ts#L77-L87
+In this situation, I think the 4th solution is the easiest to implement. So I tried the 4th solution. You can check it on the `case-5` branch.
 
-When `findReferences` calculates the start position of `a_1` (internally called [`mappedStart`](https://github.com/volarjs/volar.js/blob/882cd56d46a13d272f34e451f495d3d62251969a/packages/source-map/lib/sourceMap.ts#L103)), the following arguments are passed to the `translateOffset` function.
+- https://github.com/mizdra/typescript-volar-span-comparison/compare/main...case-5
 
-```ts
-const mappedStart = translateOffset(
-  27, // start
-  [26, 27], // fromOffsets
-  [1, 1], // toOffsets
-  [5, 3], // fromLengths
-  [5, 3], // toLengths
-);
+```console
+$ git switch case-5
+$ node volar.ts
+=== Virtual Code for src/a.module.css ===
+declare const styles: {
+  'a_1': string,
+};
+export default styles;
+
+=== Mapping for src/a.module.css ===
+[
+  { generatedOffsets: [ 27 ], lengths: [ 3 ], sourceOffsets: [ 1 ] },
+  {
+    generatedOffsets: [ 26 ],
+    lengths: [ 3 ],
+    sourceOffsets: [ 1 ],
+    generatedLengths: [ 5 ]
+  }
+]
+
+=== getDefinitionAtPosition for a_1 ===
+[
+  {
+    fileName: '/Users/mizdra/ghq/localhost/gomi/ts-compiler-api/src/a.module.css',
+    textSpan: { start: 1, length: 3 }
+  }
+]
+
+=== findReferences for a_1 ===
+[
+  {
+    definition: {
+      fileName: '/Users/mizdra/ghq/localhost/gomi/ts-compiler-api/src/a.module.css',
+      textSpan: { start: 1, length: 3 }
+    },
+    references: [
+      {
+        fileName: '/Users/mizdra/ghq/localhost/gomi/ts-compiler-api/src/a.module.css',
+        textSpan: { start: 1, length: 3 }
+      },
+      {
+        fileName: '/Users/mizdra/ghq/localhost/gomi/ts-compiler-api/src/index.ts',
+        textSpan: { start: 44, length: 3 }
+      }
+    ]
+  }
+]
+
+=== findRenameLocations for a_1 ===
+[
+  {
+    fileName: '/Users/mizdra/ghq/localhost/gomi/ts-compiler-api/src/index.ts',
+    textSpan: { start: 44, length: 3 }
+  },
+  {
+    fileName: '/Users/mizdra/ghq/localhost/gomi/ts-compiler-api/src/a.module.css',
+    textSpan: { start: 1, length: 3 }
+  }
+]
 ```
 
-This function should return `1`, but actually returns `2`. This happens because `translateOffset` cannot correctly handle cases where multiple ranges overlap at a position.
-
-When `findReferences` calculates the end position of `a_1` (internally called [`mappedEnd`](https://github.com/volarjs/volar.js/blob/882cd56d46a13d272f34e451f495d3d62251969a/packages/source-map/lib/sourceMap.ts#L108)), the `translateOffset` function is called with `preferEnd == true`.
-
-```ts
-const mappedEnd = translateOffset(
-  30, // start
-  [26, 27], // fromOffsets
-  [1, 1], // toOffsets
-  [5, 3], // fromLengths
-  [5, 3], // toLengths
-  true, // preferEnd
-);
-```
-
-This function returns `4` as expected.
-
-In summary, `mappedStart` becomes `2` and `mappedEnd` becomes `4`, so the `length` is `2`. As a result, `findReferences` and `findRenameLocations` return `{ start: 2, length: 2 }`.
-
-## What should we do?
-
-Most likely, the `translateOffset` function in Volar.js needs to be fixed to correctly handle cases where multiple ranges overlap at a position.
+Yep, perfect.
 
 ## Acknowledgments
 
