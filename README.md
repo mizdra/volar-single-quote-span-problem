@@ -374,7 +374,7 @@ The result is the same as the `case-3` branch. `findReferences` and `findRenameL
 
 ## So, what should we do?
 
-As far as I know, there are two ways to solve this problem.
+As far as I know, there are four possible solutions to this problem.
 
 1. Ask Volar.js to support overlapping mapping ranges.
     - Volar.js seems cautious about supporting overlapping mapping ranges.
