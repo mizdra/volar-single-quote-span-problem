@@ -46,7 +46,7 @@ export default styles;
 === getDefinitionAtPosition for a_1 ===
 [
   {
-    fileName: '/Users/mizdra/ghq/localhost/gomi/ts-compiler-api/src/a.module.css',
+    fileName: '/Users/mizdra/ghq/localhost/gomi/volar-single-quote-span-problem/src/a.module.css',
     textSpan: { start: 1, length: 3 }
   }
 ]
@@ -55,16 +55,16 @@ export default styles;
 [
   {
     definition: {
-      fileName: '/Users/mizdra/ghq/localhost/gomi/ts-compiler-api/src/a.module.css',
+      fileName: '/Users/mizdra/ghq/localhost/gomi/volar-single-quote-span-problem/src/a.module.css',
       textSpan: { start: 1, length: 3 }
     },
     references: [
       {
-        fileName: '/Users/mizdra/ghq/localhost/gomi/ts-compiler-api/src/a.module.css',
+        fileName: '/Users/mizdra/ghq/localhost/gomi/volar-single-quote-span-problem/src/a.module.css',
         textSpan: { start: 1, length: 3 }
       },
       {
-        fileName: '/Users/mizdra/ghq/localhost/gomi/ts-compiler-api/src/index.ts',
+        fileName: '/Users/mizdra/ghq/localhost/gomi/volar-single-quote-span-problem/src/index.ts',
         textSpan: { start: 44, length: 3 }
       }
     ]
@@ -74,11 +74,11 @@ export default styles;
 === findRenameLocations for a_1 ===
 [
   {
-    fileName: '/Users/mizdra/ghq/localhost/gomi/ts-compiler-api/src/index.ts',
+    fileName: '/Users/mizdra/ghq/localhost/gomi/volar-single-quote-span-problem/src/index.ts',
     textSpan: { start: 44, length: 3 }
   },
   {
-    fileName: '/Users/mizdra/ghq/localhost/gomi/ts-compiler-api/src/a.module.css',
+    fileName: '/Users/mizdra/ghq/localhost/gomi/volar-single-quote-span-problem/src/a.module.css',
     textSpan: { start: 1, length: 3 }
   }
 ]
@@ -105,7 +105,7 @@ export default styles;
 === getDefinitionAtPosition for a_1 ===
 [
   {
-    fileName: '/Users/mizdra/ghq/localhost/gomi/ts-compiler-api/src/a.module.css',
+    fileName: '/Users/mizdra/ghq/localhost/gomi/volar-single-quote-span-problem/src/a.module.css',
     textSpan: { start: 0, length: 0 }
   }
 ]
@@ -114,16 +114,16 @@ export default styles;
 [
   {
     definition: {
-      fileName: '/Users/mizdra/ghq/localhost/gomi/ts-compiler-api/src/a.module.css',
+      fileName: '/Users/mizdra/ghq/localhost/gomi/volar-single-quote-span-problem/src/a.module.css',
       textSpan: { start: 1, length: 3 }
     },
     references: [
       {
-        fileName: '/Users/mizdra/ghq/localhost/gomi/ts-compiler-api/src/a.module.css',
+        fileName: '/Users/mizdra/ghq/localhost/gomi/volar-single-quote-span-problem/src/a.module.css',
         textSpan: { start: 1, length: 3 }
       },
       {
-        fileName: '/Users/mizdra/ghq/localhost/gomi/ts-compiler-api/src/index.ts',
+        fileName: '/Users/mizdra/ghq/localhost/gomi/volar-single-quote-span-problem/src/index.ts',
         textSpan: { start: 44, length: 3 }
       }
     ]
@@ -133,11 +133,11 @@ export default styles;
 === findRenameLocations for a_1 ===
 [
   {
-    fileName: '/Users/mizdra/ghq/localhost/gomi/ts-compiler-api/src/index.ts',
+    fileName: '/Users/mizdra/ghq/localhost/gomi/volar-single-quote-span-problem/src/index.ts',
     textSpan: { start: 44, length: 3 }
   },
   {
-    fileName: '/Users/mizdra/ghq/localhost/gomi/ts-compiler-api/src/a.module.css',
+    fileName: '/Users/mizdra/ghq/localhost/gomi/volar-single-quote-span-problem/src/a.module.css',
     textSpan: { start: 1, length: 3 }
   }
 ]
@@ -155,7 +155,7 @@ $ node typescript.ts
 === getDefinitionAtPosition for a_1 ===
 [
   {
-    fileName: '/Users/mizdra/ghq/localhost/gomi/ts-compiler-api/src/a.module.css.d.ts',
+    fileName: '/Users/mizdra/ghq/localhost/gomi/volar-single-quote-span-problem/src/a.module.css.d.ts',
     textSpan: { start: 26, length: 5 }
   }
 ]
@@ -164,16 +164,16 @@ $ node typescript.ts
 [
   {
     definition: {
-      fileName: '/Users/mizdra/ghq/localhost/gomi/ts-compiler-api/src/a.module.css.d.ts',
+      fileName: '/Users/mizdra/ghq/localhost/gomi/volar-single-quote-span-problem/src/a.module.css.d.ts',
       textSpan: { start: 27, length: 3 }
     },
     references: [
       {
-        fileName: '/Users/mizdra/ghq/localhost/gomi/ts-compiler-api/src/a.module.css.d.ts',
+        fileName: '/Users/mizdra/ghq/localhost/gomi/volar-single-quote-span-problem/src/a.module.css.d.ts',
         textSpan: { start: 27, length: 3 }
       },
       {
-        fileName: '/Users/mizdra/ghq/localhost/gomi/ts-compiler-api/src/index.ts',
+        fileName: '/Users/mizdra/ghq/localhost/gomi/volar-single-quote-span-problem/src/index.ts',
         textSpan: { start: 44, length: 3 }
       }
     ]
@@ -183,11 +183,11 @@ $ node typescript.ts
 === findRenameLocations for a_1 ===
 [
   {
-    fileName: '/Users/mizdra/ghq/localhost/gomi/ts-compiler-api/src/a.module.css.d.ts',
+    fileName: '/Users/mizdra/ghq/localhost/gomi/volar-single-quote-span-problem/src/a.module.css.d.ts',
     textSpan: { start: 27, length: 3 }
   },
   {
-    fileName: '/Users/mizdra/ghq/localhost/gomi/ts-compiler-api/src/index.ts',
+    fileName: '/Users/mizdra/ghq/localhost/gomi/volar-single-quote-span-problem/src/index.ts',
     textSpan: { start: 44, length: 3 }
   }
 ]
@@ -237,7 +237,7 @@ export default styles;
 === getDefinitionAtPosition for a_1 ===
 [
   {
-    fileName: '/Users/mizdra/ghq/localhost/gomi/ts-compiler-api/src/a.module.css',
+    fileName: '/Users/mizdra/ghq/localhost/gomi/volar-single-quote-span-problem/src/a.module.css',
     textSpan: { start: 1, length: 3 }
   }
 ]
@@ -246,16 +246,16 @@ export default styles;
 [
   {
     definition: {
-      fileName: '/Users/mizdra/ghq/localhost/gomi/ts-compiler-api/src/a.module.css',
+      fileName: '/Users/mizdra/ghq/localhost/gomi/volar-single-quote-span-problem/src/a.module.css',
       textSpan: { start: 2, length: 2 }
     },
     references: [
       {
-        fileName: '/Users/mizdra/ghq/localhost/gomi/ts-compiler-api/src/a.module.css',
+        fileName: '/Users/mizdra/ghq/localhost/gomi/volar-single-quote-span-problem/src/a.module.css',
         textSpan: { start: 2, length: 2 }
       },
       {
-        fileName: '/Users/mizdra/ghq/localhost/gomi/ts-compiler-api/src/index.ts',
+        fileName: '/Users/mizdra/ghq/localhost/gomi/volar-single-quote-span-problem/src/index.ts',
         textSpan: { start: 44, length: 3 }
       }
     ]
@@ -265,11 +265,11 @@ export default styles;
 === findRenameLocations for a_1 ===
 [
   {
-    fileName: '/Users/mizdra/ghq/localhost/gomi/ts-compiler-api/src/index.ts',
+    fileName: '/Users/mizdra/ghq/localhost/gomi/volar-single-quote-span-problem/src/index.ts',
     textSpan: { start: 44, length: 3 }
   },
   {
-    fileName: '/Users/mizdra/ghq/localhost/gomi/ts-compiler-api/src/a.module.css',
+    fileName: '/Users/mizdra/ghq/localhost/gomi/volar-single-quote-span-problem/src/a.module.css',
     textSpan: { start: 2, length: 2 }
   }
 ]
@@ -330,7 +330,7 @@ export default styles;
 === getDefinitionAtPosition for a_1 ===
 [
   {
-    fileName: '/Users/mizdra/ghq/localhost/gomi/ts-compiler-api/src/a.module.css',
+    fileName: '/Users/mizdra/ghq/localhost/gomi/volar-single-quote-span-problem/src/a.module.css',
     textSpan: { start: 1, length: 3 }
   }
 ]
@@ -339,16 +339,16 @@ export default styles;
 [
   {
     definition: {
-      fileName: '/Users/mizdra/ghq/localhost/gomi/ts-compiler-api/src/a.module.css',
+      fileName: '/Users/mizdra/ghq/localhost/gomi/volar-single-quote-span-problem/src/a.module.css',
       textSpan: { start: 2, length: 2 }
     },
     references: [
       {
-        fileName: '/Users/mizdra/ghq/localhost/gomi/ts-compiler-api/src/a.module.css',
+        fileName: '/Users/mizdra/ghq/localhost/gomi/volar-single-quote-span-problem/src/a.module.css',
         textSpan: { start: 2, length: 2 }
       },
       {
-        fileName: '/Users/mizdra/ghq/localhost/gomi/ts-compiler-api/src/index.ts',
+        fileName: '/Users/mizdra/ghq/localhost/gomi/volar-single-quote-span-problem/src/index.ts',
         textSpan: { start: 44, length: 3 }
       }
     ]
@@ -358,11 +358,11 @@ export default styles;
 === findRenameLocations for a_1 ===
 [
   {
-    fileName: '/Users/mizdra/ghq/localhost/gomi/ts-compiler-api/src/index.ts',
+    fileName: '/Users/mizdra/ghq/localhost/gomi/volar-single-quote-span-problem/src/index.ts',
     textSpan: { start: 44, length: 3 }
   },
   {
-    fileName: '/Users/mizdra/ghq/localhost/gomi/ts-compiler-api/src/a.module.css',
+    fileName: '/Users/mizdra/ghq/localhost/gomi/volar-single-quote-span-problem/src/a.module.css',
     textSpan: { start: 2, length: 2 }
   }
 ]
@@ -420,7 +420,7 @@ export default styles;
 === getDefinitionAtPosition for a_1 ===
 [
   {
-    fileName: '/Users/mizdra/ghq/localhost/gomi/ts-compiler-api/src/a.module.css',
+    fileName: '/Users/mizdra/ghq/localhost/gomi/volar-single-quote-span-problem/src/a.module.css',
     textSpan: { start: 1, length: 3 }
   }
 ]
@@ -429,16 +429,16 @@ export default styles;
 [
   {
     definition: {
-      fileName: '/Users/mizdra/ghq/localhost/gomi/ts-compiler-api/src/a.module.css',
+      fileName: '/Users/mizdra/ghq/localhost/gomi/volar-single-quote-span-problem/src/a.module.css',
       textSpan: { start: 1, length: 3 }
     },
     references: [
       {
-        fileName: '/Users/mizdra/ghq/localhost/gomi/ts-compiler-api/src/a.module.css',
+        fileName: '/Users/mizdra/ghq/localhost/gomi/volar-single-quote-span-problem/src/a.module.css',
         textSpan: { start: 1, length: 3 }
       },
       {
-        fileName: '/Users/mizdra/ghq/localhost/gomi/ts-compiler-api/src/index.ts',
+        fileName: '/Users/mizdra/ghq/localhost/gomi/volar-single-quote-span-problem/src/index.ts',
         textSpan: { start: 44, length: 3 }
       }
     ]
@@ -448,11 +448,11 @@ export default styles;
 === findRenameLocations for a_1 ===
 [
   {
-    fileName: '/Users/mizdra/ghq/localhost/gomi/ts-compiler-api/src/index.ts',
+    fileName: '/Users/mizdra/ghq/localhost/gomi/volar-single-quote-span-problem/src/index.ts',
     textSpan: { start: 44, length: 3 }
   },
   {
-    fileName: '/Users/mizdra/ghq/localhost/gomi/ts-compiler-api/src/a.module.css',
+    fileName: '/Users/mizdra/ghq/localhost/gomi/volar-single-quote-span-problem/src/a.module.css',
     textSpan: { start: 1, length: 3 }
   }
 ]
