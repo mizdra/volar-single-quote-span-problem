@@ -1,4 +1,2 @@
-declare const styles: {
-  a_1: string,
-};
-export default styles;
+declare var _token_0: string;
+export { _token_0 as 'a_1' };
